@@ -1,18 +1,19 @@
 const { Router } = require('express');
 const router = Router();
+const verifyToken = require('../controllers/verfyToken');
 
 const { getNotes, createNote, getNote, updateNote, deleteNote, deleteNotess } = require('../controllers/notes.controller');
 
 router.route('/')
-    .get(getNotes)
-    .post(createNote);
+    .get(verifyToken, getNotes)
+    .post(verifyToken, createNote);
     
 router.route('/mat/:mat')
-    .delete(deleteNotess);
+    .delete(verifyToken, deleteNotess);
 
 router.route('/:id')
-    .get(getNote)
+    .get(verifyToken, getNote)
     .put(updateNote)
-    .delete(deleteNote);
+    .delete(verifyToken, deleteNote);
 
 module.exports = router;

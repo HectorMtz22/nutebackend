@@ -4,7 +4,7 @@ const app = require('./app');
 require('./database');
 
     /* Código viejito */
-    require('./config/passport');
+    // require('./config/passport');
 
 async function main() {
     await app.listen(app.get('port'));

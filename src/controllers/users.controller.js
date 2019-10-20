@@ -1,10 +1,11 @@
+/*
 const passport = require('passport');
 
 const usersCtrl = {};
 const User = require('../models/User');
 
 usersCtrl.getUser = passport.authenticate('local', {
-    successRedirect: '/api/users/user',
+    successRedirect: '',
     failureFlash: true
 })
 
@@ -57,3 +58,4 @@ usersCtrl.getUserLogout = (req, res) => {
 }
 
 module.exports = usersCtrl;
+*/

@@ -3,9 +3,10 @@ const { Schema, model } = require('mongoose');
 const matSchema = new Schema({
     matname: {
         type: String,
-        required: true,
-        trim: true,
-        unique: true
+        required: false,
+        trim: false,
+        unique: false,
+        index: {unique: false}
     },
     user: {
         type: String

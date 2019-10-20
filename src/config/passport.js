@@ -1,3 +1,4 @@
+/*
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -28,3 +29,4 @@ passport.deserializeUser((id, done) => {
         done(err, user);
     });
 });
+*/
