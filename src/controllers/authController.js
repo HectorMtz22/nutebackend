@@ -31,7 +31,7 @@ router.post('/signup', async (req, res, next) => {
 router.get('/me', verifyToken, async (req, res, next) => {
     const user = await User.findById(req.userId, { password: 0 });
     if (!user) {
-        return res.json({message: 'No user found', auth: false, user: null});
+        return res.json({message: 'Usuario no encontrado', auth: false, user: null});
     }
     res.json({auth: true, user});
 })
@@ -40,11 +40,11 @@ router.post('/signin', async (req, res, next) => {
     const { email, password } = req.body;
     const user = await User.findOne({email: email})
     if(!user) {
-        return res.json({auth: false, token: null, message:'No User Found', username: null});
+        return res.json({auth: false, token: null, message:'Usuario no encontrado', username: null});
     }
     const passwordIsValid = await user.matchPassword(password);
     if (!passwordIsValid) {
-        return res.json({auth: false, token: null, message:'Password Incorrect', username: null});
+        return res.json({auth: false, token: null, message:'Contraseña incorrecta', username: null});
     }
 
     const token = jwt.sign({id: user._id}, process.env.SECRET, {

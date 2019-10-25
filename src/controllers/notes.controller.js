@@ -3,7 +3,7 @@ const notesCtrl = {};
 const Note = require('../models/Note');
 
 notesCtrl.getNotes = async (req, res) => {
-    const notes = await Note.find({user: req.userId}).sort({date: 'desc'});
+    const notes = await Note.find({user: req.userId}).sort({date: 'asc'});
     res.json(notes);
 }
 
@@ -28,14 +28,14 @@ notesCtrl.getNote = async (req, res) => {
 }
 
 notesCtrl.updateNote = async (req, res) => {
-    const { title, mat, content, date, _id } = req.body;
-    await Note.findOneAndUpdate(_id, {
-        title,
-        content,
-        mat,
-        date
-    });
-    res.json({message: 'Note Updated', id: _id})
+    const { title, mat, content, date } = req.body;
+    await Note.findByIdAndUpdate(req.params.id, {
+        title: title,
+        content: content,
+        mat: mat,
+        date: date
+    }, {new: true});
+    res.json({message: 'Note Updated'});
 }
 
 notesCtrl.deleteNote = async (req, res) => {
