@@ -21,7 +21,7 @@ router.post('/signup', async (req, res, next) => {
         await user.save();
 
         const token = jwt.sign({id: user._id}, process.env.SECRET, {
-            expiresIn: 60 * 60 * 24
+            expiresIn: 60 * 60 * 24 * 7
         })
 
         res.json({auth: true, token, message: ''});
@@ -48,7 +48,7 @@ router.post('/signin', async (req, res, next) => {
     }
 
     const token = jwt.sign({id: user._id}, process.env.SECRET, {
-        expiresIn: 60 * 60 * 24
+        expiresIn: 60 * 60 * 24 * 7
     })
 
     res.json({auth: true, token, user});
